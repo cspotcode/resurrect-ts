@@ -1,0 +1,32 @@
+{
+  "name": "resurrect-ts",
+  "version": "0.0.1",
+  "description": "ResurrectJS preserves object behavior (prototypes) and reference circularity with a special JSON encoding. Unlike flat JSON, it can also properly resurrect these types of values:",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cspotcode/resurrect-ts.git"
+  },
+  "keywords": [],
+  "author": "skeeto",
+  "contributors": [{
+    "name": "Andrew Bradley",
+    "email": "cspotcode@gmail.com",
+    "url": "https://github.com/cspotcode"
+  }],
+  "license": "UNLICENSE",
+  "bugs": {
+    "url": "https://github.com/cspotcode/resurrect-ts/issues"
+  },
+  "homepage": "https://github.com/cspotcode/resurrect-ts#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "files": [
+    "resurrect.js",
+    "resurrect.d.ts"
+  ],
+  "main": "resurrect",
+  "scripts": {
+    "prepare": "tsc"
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "files": [
+        "resurrect.js"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "declaration": true,
+        "emitDeclarationOnly": true
+    }
+}

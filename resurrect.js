@@ -52,7 +52,7 @@
  *     resurrection information will not be encoded. You still get
  *     circularity and Date support.
  *
- *   resolver (Resurrect.NamespaceResolver(window)): Converts between
+ *   resolver (NamespaceResolver(window)): Converts between
  *     a name and a prototype. Create a custom resolver if your
  *     constructors are not stored in global variables. The resolver
  *     has two methods: getName(object) and getPrototype(string).
@@ -80,9 +80,16 @@
  *
  * @see http://nullprogram.com/blog/2013/03/28/
  */
-
 /**
- * @param {Object} [options] See options documentation.
+ * @typedef {{
+ *   prefix?: string;
+ *   cleanup?: boolean;
+ *   revive?: boolean;
+ *   resolver?: NamespaceResolver;
+ * }} Options
+ */
+/**
+ * @param {Options} [options] See options documentation.
  * @namespace
  * @constructor
  */
@@ -138,7 +145,7 @@ Resurrect.prototype.Error.prototype.name = 'ResurrectError';
  * @param {Object} scope
  * @constructor
  */
-Resurrect.NamespaceResolver = function(scope) {
+function NamespaceResolver(scope) {
     this.scope = scope;
 };
 
@@ -149,7 +156,7 @@ Resurrect.NamespaceResolver = function(scope) {
  * @returns {Object}
  * @method
  */
-Resurrect.NamespaceResolver.prototype.getPrototype = function(name) {
+NamespaceResolver.prototype.getPrototype = function(name) {
     var constructor = this.scope[name];
     if (constructor) {
         return constructor.prototype;
@@ -164,7 +171,7 @@ Resurrect.NamespaceResolver.prototype.getPrototype = function(name) {
  * @returns {?string} Null if the constructor is Object.
  * @method
  */
-Resurrect.NamespaceResolver.prototype.getName = function(object) {
+NamespaceResolver.prototype.getName = function(object) {
     var constructor = object.constructor.name;
     if (constructor == null) { // IE
         var funcPattern = /^\s*function\s*([A-Za-z0-9_$]*)/;
@@ -183,7 +190,7 @@ Resurrect.NamespaceResolver.prototype.getName = function(object) {
 
 /* Set the default resolver searches the global object. */
 Resurrect.prototype.resolver =
-    new Resurrect.NamespaceResolver(Resurrect.GLOBAL);
+    new NamespaceResolver(Resurrect.GLOBAL);
 
 /**
  * Create a DOM node from HTML source; behaves like a constructor.
@@ -537,3 +544,6 @@ Resurrect.prototype.resurrect = function(string) {
     this.table = null;
     return result;
 };
+
+module.exports.Resurrect = Resurrect;
+module.exports.NamespaceResolver = NamespaceResolver;
