@@ -74,12 +74,14 @@ export class Resurrect {
     tag(object: any): number;
     tagMap: WeakMap<object, any>;
     refcodeMap: WeakMap<object, any>;
+    _hasTag(object: any): boolean;
     _getTag(object: any): any;
-    _setTag(object: any, value: any): void;
+    _setTag(object: any, value: any): any;
+    _deleteTag(object: any): void;
     _getRefcode(object: any): any;
-    _setRefcode(object: any, value: any): void;
+    _setRefcode(object: any, value: any): any;
     _deleteRefcode(object: any): void;
-    _setRefcodeNull(object: any): void;
+    _setRefcodeNull(object: any): any;
     /**
      * Create a builder object (encoding) for serialization.
      * @param {string} name The name of the constructor.
@@ -172,6 +174,7 @@ export namespace Resurrect {
     const isString: Function;
     const isBoolean: Function;
     const isNumber: Function;
+    const isBigInt: Function;
     const isFunction: Function;
     const isDate: Function;
     const isRegExp: Function;
