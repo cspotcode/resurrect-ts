@@ -27,7 +27,8 @@
     "resurrect.js",
     "resurrect.d.ts"
   ],
-  "main": "resurrect",
+  "main": "resurrect.js",
+  "types": "resurrect.d.ts",
   "scripts": {
     "prepare": "tsc"
   }

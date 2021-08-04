@@ -26,6 +26,7 @@ Read about [how it works](http://nullprogram.com/blog/2013/03/28/).
 ## Examples
 
 ```javascript
+import {Resurrect} from 'resurrect-ts';
 function Foo() {}
 Foo.prototype.greet = function() { return "hello"; };
 
@@ -76,7 +77,8 @@ properties:
 
 For example,
 
-```javascript
+```typescript
+import {Resurrect} from 'resurrect-ts';
 var necromancer = new Resurrect({
     prefix: '__#',
     cleanup: true
@@ -116,15 +118,17 @@ There is a caveat with the provided resolver, NamespaceResolver: all
 constructors *must* be explicitly named when defined. For example, see
 the Foo constructor in this example,
 
-~~~javascript
-var namespace = {};
-namespace.Foo = function Foo() {
-    this.bar = true;
+```typescript
+import {Resurrect, NamespaceResolver} from 'resurrect-ts';
+const ns = {
+    Foo() {
+        this.bar = true;
+    }
 };
-var necromancer = new Resurrect({
-    resolver: new Resurrect.NamespaceResolver(namespace)
+const necromancer = new Resurrect({
+    resolver: new NamespaceResolver(ns)
 });
-~~~
+```
 
 The constructor been assigned to the Foo property *and* the function
 itself has been given a matching name. This is how the resolver will
