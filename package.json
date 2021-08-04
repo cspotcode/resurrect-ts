@@ -1,6 +1,6 @@
 {
   "name": "resurrect-ts",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "ResurrectJS preserves object behavior (prototypes) and reference circularity with a special JSON encoding. Unlike flat JSON, it can also properly resurrect these types of values:",
   "repository": {
     "type": "git",
