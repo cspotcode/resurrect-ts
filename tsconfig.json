@@ -3,6 +3,7 @@
         "resurrect.js"
     ],
     "compilerOptions": {
+        "lib": ["ES2015", "DOM"],
         "allowJs": true,
         "declaration": true,
         "emitDeclarationOnly": true
